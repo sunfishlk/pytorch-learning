@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 LR = 0.01
 BATCH_SIZE = 32
-EPOCH = 12
+EPOCH = 10
 
 # fake dataset
 x = torch.unsqueeze(torch.linspace(-1, 1, 1000), dim=1)
@@ -50,23 +50,23 @@ if __name__=='__main__':
     optimizers = [opt_SGD, opt_Momentum, opt_RMSprop, opt_Adam]
 
     loss_func = torch.nn.MSELoss()
-    losses_his = [[], [], [], []]   # record loss
+    losses = [[], [], [], []]   # record loss
 
     # training
     for epoch in range(EPOCH):
         print('Epoch: ', epoch)
         for step, (b_x, b_y) in enumerate(loader):          # for each training step
-            for net, opt, l_his in zip(nets, optimizers, losses_his):
+            for net, opt, loss_his in zip(nets, optimizers, losses):
                 output = net(b_x)              # get output for every net
                 loss = loss_func(output, b_y)  # compute loss for every net
                 opt.zero_grad()                # clear gradients for next train
                 loss.backward()                # backpropagation, compute gradients
                 opt.step()                     # apply gradients
-                l_his.append(loss.data.numpy())     # loss recoder
+                loss_his.append(loss.data.numpy())     # loss recoder
 
     labels = ['SGD', 'Momentum', 'RMSprop', 'Adam']
-    for i, l_his in enumerate(losses_his):
-        plt.plot(l_his, label=labels[i])
+    for i, loss_his in enumerate(losses):
+        plt.plot(loss_his, label=labels[i])
     plt.legend(loc='best')
     plt.xlabel('Steps')
     plt.ylabel('Loss')
