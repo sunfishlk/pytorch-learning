@@ -3,7 +3,8 @@ import torch.utils.data as Data
 
 def main():
     torch.manual_seed(1)  # reproducible，设置随机数种子，每次生成随机数都是相同种子，保证每次运行结果一致
-    BATCH_SIZE = 5
+    # BATCH_SIZE = 8  # 批训练的数据个数，8个为一批，算作一个小样本
+    BATCH_SIZE = 3
 
     # make fake data
     x = torch.linspace(1, 10, 10)       # this is x data (torch tensor)
