@@ -46,7 +46,7 @@ for i in range(100):
     # 优化器步进
     optimizer.step()
 
-    # 可视化训练过程
+    # 可视化训练过程，每训练5次绘制1次图
     if i % 5==0:
         # 清除当前图像
         plt.cla()
