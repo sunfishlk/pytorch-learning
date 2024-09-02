@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 
 # RNN回归分析 正弦函数 预测余弦 sin->cos
 
-INPUT_SIZE = 1
-TIME_STEP = 10
 LR = 0.02
 
 # numpy生成数据集
@@ -58,7 +56,7 @@ plt.ion()
 # 训练
 for step in range(100):
     start, end = step*np.pi, (step+1)*np.pi
-    steps = np.linspace(start, end, TIME_STEP, dtype=np.float32, endpoint=False)
+    steps = np.linspace(start, end, 10, dtype=np.float32, endpoint=False)
     x_np = np.sin(steps)
     y_np = np.cos(steps)
 
